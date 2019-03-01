@@ -7,32 +7,37 @@ public class FollowPath : MonoBehaviour
     public PathEditor pathToFollow;
 
     public int currentWayPointID = 0;
-    public float speed;
-    public float reachDistance = 1.0f;
+    public float speed = 2;
+    public float reachDistance = .1f;
     public float rotationSpeed = .5f;
-    public string pathName;
 
     private Vector3 previousPosition;
     private Vector3 currentPosition;
     
     // Start is called before the first frame update
     void Start()
-    {
-        //pathToFollow = GameObject.Find(pathName).GetComponent<PathEditor>();
+    {   
         previousPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 nextPoint = pathToFollow.wayPoints[currentWayPointID].GetTransform().position;
-        float distance = Vector3.Distance(nextPoint, transform.position);
-        transform.position = Vector3.MoveTowards(transform.position, nextPoint, Time.deltaTime * speed);
+        WayPoint targetWayPoint = pathToFollow.wayPoints[currentWayPointID];
 
-        Quaternion rotation = Quaternion.LookRotation(nextPoint - transform.position);
+        // MOVE TO WAYPOINT
+        Vector3 targetPosition = targetWayPoint.GetTransform().position;
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * speed);
+
+        // ROTATE TOWARDS WAYPOINT
+        Quaternion rotation = Quaternion.LookRotation(targetPosition - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
 
-        if (distance <= reachDistance) {
+        float distance = Vector3.Distance(targetPosition, transform.position);
+        if (distance <= targetWayPoint.reachDistance) {
+            if (targetWayPoint.wayPointType == WayPointType.DANGER) {
+                speed = 0;
+            }
             currentWayPointID++;
         }
         
