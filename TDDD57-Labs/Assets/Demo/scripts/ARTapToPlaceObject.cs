@@ -7,6 +7,7 @@ using System;
 
 public class ARTapToPlaceObject : MonoBehaviour
 {
+    GameObject mainCamera;
     public GameObject objectToPlace;
     public GameObject placementIndicator;
 
@@ -15,6 +16,7 @@ public class ARTapToPlaceObject : MonoBehaviour
     private bool placementPoseIsValid = false;
     void Start()
     {
+        mainCamera = GameObject.FindWithTag("MainCamera");
         arOrigin = FindObjectOfType<ARSessionOrigin>();
     }
 
@@ -24,7 +26,7 @@ public class ARTapToPlaceObject : MonoBehaviour
         updatePlacementPose();
         updatePlacementIndicator();
 
-        if (placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if (placementPoseIsValid && Input.touchCount == 2 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             PlaceObject();
         }
@@ -50,7 +52,7 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     private void updatePlacementPose()
     {
-        var screenCast = Camera.current.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
+        var screenCast = mainCamera.GetComponent<Camera>().ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
         var hits = new List<ARRaycastHit>();
         arOrigin.Raycast(screenCast, hits, TrackableType.Planes);
 
