@@ -4,33 +4,38 @@ using System.Collections.Generic;
 
 public class PathEditor : MonoBehaviour
 {
-    public Color pathColor;
-    public List<Transform> pathNodeTransforms = new List<Transform>();
+    public Color pathColor = Color.black;
+    public Color dangerWayPointColor = Color.red;
+    public List<WayPoint> wayPoints = new List<WayPoint>();
 
-    private Transform[] children;
+    private WayPoint[] children;
 
     private void OnDrawGizmos() {
         Gizmos.color = pathColor;
-        pathNodeTransforms.Clear();
-        children = GetComponentsInChildren<Transform>();
+        wayPoints.Clear();
+        children = GetComponentsInChildren<WayPoint>();
 
-        foreach (Transform nodeTransfrom in children) {
-            // If statement makes sure not to add the parent's transform to the path
-            if (nodeTransfrom != this.transform) {
-                pathNodeTransforms.Add(nodeTransfrom);
-            }
+        foreach (WayPoint wayPoint in children) {
+            wayPoints.Add(wayPoint);
+            
         }
-        Debug.Log(pathNodeTransforms.Count);
-        for (int i = 0; i < pathNodeTransforms.Count; i++) {
-            Vector3 currentPosition = pathNodeTransforms[i].position;
+        
+        for (int i = 0; i < wayPoints.Count; i++) {
+            Vector3 currentPosition = wayPoints[i].GetTransform().position;
+            Gizmos.color = pathColor;
             if (i > 0) {
-                Vector3 previousPosition = pathNodeTransforms[i - 1].position;
+                Vector3 previousPosition = wayPoints[i - 1].GetTransform().position;
+                
                 Gizmos.DrawLine(previousPosition, currentPosition);
+                if (wayPoints[i].wayPointType == WayPointType.DANGER) {
+                    Gizmos.color = dangerWayPointColor;
+                }
                 Gizmos.DrawWireSphere(currentPosition, .15f);
             } else {
                 Gizmos.DrawWireSphere(currentPosition, .15f);
             }
         }
+        Gizmos.color = pathColor;
     }
 
 }

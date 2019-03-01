@@ -25,7 +25,7 @@ public class FollowPath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 nextPoint = pathToFollow.pathNodeTransforms[currentWayPointID].position;
+        Vector3 nextPoint = pathToFollow.wayPoints[currentWayPointID].GetTransform().position;
         float distance = Vector3.Distance(nextPoint, transform.position);
         transform.position = Vector3.MoveTowards(transform.position, nextPoint, Time.deltaTime * speed);
 
@@ -36,7 +36,7 @@ public class FollowPath : MonoBehaviour
             currentWayPointID++;
         }
         
-        if (currentWayPointID >= pathToFollow.pathNodeTransforms.Count) {
+        if (currentWayPointID >= pathToFollow.wayPoints.Count) {
             currentWayPointID = 0;
         }
     }
