@@ -14,6 +14,7 @@ public class FollowPath : MonoBehaviour
 
     private Vector3 previousPosition;
     private Vector3 currentPosition;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +29,8 @@ public class FollowPath : MonoBehaviour
         float distance = Vector3.Distance(nextPoint, transform.position);
         transform.position = Vector3.MoveTowards(transform.position, nextPoint, Time.deltaTime * speed);
 
-        transform.LookAt(pathToFollow.pathNodeTransforms[currentWayPointID]);
+        Quaternion rotation = Quaternion.LookRotation(nextPoint - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
 
         if (distance <= reachDistance) {
             currentWayPointID++;

@@ -24,8 +24,10 @@ public class PathEditor : MonoBehaviour
         for (int i = 0; i < pathNodeTransforms.Count; i++) {
             Vector3 currentPosition = pathNodeTransforms[i].position;
             if (i > 0) {
-                Vector3 previousPosition = pathNodeTransforms[i-1].position;
+                Vector3 previousPosition = pathNodeTransforms[i - 1].position;
                 Gizmos.DrawLine(previousPosition, currentPosition);
+                Gizmos.DrawWireSphere(currentPosition, .15f);
+            } else {
                 Gizmos.DrawWireSphere(currentPosition, .15f);
             }
         }
