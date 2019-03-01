@@ -16,6 +16,7 @@ public class ARTapToPlaceObject : MonoBehaviour
     void Start()
     {
         arOrigin = FindObjectOfType<ARSessionOrigin>();
+        Application.targetFrameRate = 30;
     }
 
 
