@@ -21,10 +21,10 @@ public class PathEditor : MonoBehaviour
         }
         
         for (int i = 0; i < wayPoints.Count; i++) {
-            Vector3 currentPosition = wayPoints[i].GetTransform().position;
+            Vector3 currentPosition = wayPoints[i].transform.position;
             Gizmos.color = pathColor;
             if (i > 0) {
-                Vector3 previousPosition = wayPoints[i - 1].GetTransform().position;
+                Vector3 previousPosition = wayPoints[i - 1].transform.position;
                 
                 Gizmos.DrawLine(previousPosition, currentPosition);
                 if (wayPoints[i].wayPointType == WayPointType.DANGER) {

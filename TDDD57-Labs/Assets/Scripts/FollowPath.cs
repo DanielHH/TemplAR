@@ -24,9 +24,9 @@ public class FollowPath : MonoBehaviour
     void Update()
     {
         WayPoint targetWayPoint = pathToFollow.wayPoints[currentWayPointID];
-
+        
         // MOVE TO WAYPOINT
-        Vector3 targetPosition = targetWayPoint.GetTransform().position;
+        Vector3 targetPosition = targetWayPoint.transform.position;
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * speed);
 
         // ROTATE TOWARDS WAYPOINT
