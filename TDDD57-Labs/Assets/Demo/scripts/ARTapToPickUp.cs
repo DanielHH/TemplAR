@@ -12,17 +12,15 @@ public class ARTapToPickUp : MonoBehaviour
     GameObject selectedObject;
     Color32 regColor = new Color32(255, 255, 255, 255);
     Color32 highlightColor = new Color32(53, 255, 63, 255);
-    public Transform theDest;
     bool carrying = false;
     public float distance;
     public float smooth;
-    // Use this for initialization
+
     void Start()
     {
         mainCamera = GameObject.FindWithTag("MainCamera");
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (carrying)
@@ -98,31 +96,3 @@ public class ARTapToPickUp : MonoBehaviour
         carriedObject = null;
     }
 }
-    /*
-    public Transform theDest;
-
-    private bool holdingCube = false;
-
-    
-    void Update()
-    {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began){
-            if (holdingCube == false)
-            {
-                GetComponent<BoxCollider>().enabled = false;
-                GetComponent<Rigidbody>().useGravity = false;
-                this.transform.position = theDest.position;
-                this.transform.parent = GameObject.Find("Destination").transform;
-                holdingCube = true;
-            }
-            else
-            {
-                GetComponent<BoxCollider>().enabled = true;
-                this.transform.parent = null;
-                GetComponent<Rigidbody>().useGravity = true;
-                holdingCube = false;
-            }
-        }
-    }
-}
-*/
