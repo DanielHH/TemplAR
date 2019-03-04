@@ -14,31 +14,35 @@ public class FollowPath : MonoBehaviour
     private Vector3 previousPosition;
     private Vector3 currentPosition;
     
-    // Start is called before the first frame update
+
     void Start()
     {   
         previousPosition = transform.position;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         WayPoint targetWayPoint = pathToFollow.wayPoints[currentWayPointID];
         
-        // MOVE TO WAYPOINT
         Vector3 targetPosition = targetWayPoint.transform.position;
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * speed);
 
-        // ROTATE TOWARDS WAYPOINT
         Quaternion rotation = Quaternion.LookRotation(targetPosition - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
 
         float distance = Vector3.Distance(targetPosition, transform.position);
         if (distance <= targetWayPoint.reachDistance) {
+            if (Input.GetMouseButton(0)) {
+                targetWayPoint.wayPointType = WayPointType.NORMAL;
+            }
             if (targetWayPoint.wayPointType == WayPointType.DANGER) {
                 speed = 0;
+            } else {
+                speed = 2;
+                currentWayPointID++;
             }
-            currentWayPointID++;
+            
         }
         
         if (currentWayPointID >= pathToFollow.wayPoints.Count) {

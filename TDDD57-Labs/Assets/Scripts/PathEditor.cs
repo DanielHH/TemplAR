@@ -6,6 +6,7 @@ public class PathEditor : MonoBehaviour
 {
     public Color pathColor = Color.black;
     public Color dangerWayPointColor = Color.red;
+    public Color normalWayPointColor = Color.green;
     public List<WayPoint> wayPoints = new List<WayPoint>();
 
     private WayPoint[] children;
@@ -29,6 +30,8 @@ public class PathEditor : MonoBehaviour
                 Gizmos.DrawLine(previousPosition, currentPosition);
                 if (wayPoints[i].wayPointType == WayPointType.DANGER) {
                     Gizmos.color = dangerWayPointColor;
+                } else {
+                    Gizmos.color = normalWayPointColor;
                 }
                 Gizmos.DrawWireSphere(currentPosition, .15f);
             } else {
