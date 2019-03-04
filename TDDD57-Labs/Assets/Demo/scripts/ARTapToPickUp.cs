@@ -8,9 +8,12 @@ using System;
 public class ARTapToPickUp : MonoBehaviour
 {
     GameObject mainCamera;
+    GameObject carriedObject;
+    GameObject selectedObject;
+    Color32 regColor = new Color32(255, 255, 255, 255);
+    Color32 highlightColor = new Color32(53, 255, 63, 255);
     public Transform theDest;
     bool carrying = false;
-    GameObject carriedObject;
     public float distance;
     public float smooth;
     // Use this for initialization
@@ -41,26 +44,39 @@ public class ARTapToPickUp : MonoBehaviour
 
     void carry(GameObject o)
     {
-        o.transform.position = theDest.position;
+        o.transform.position = Vector3.Lerp(o.transform.position, mainCamera.transform.position + mainCamera.transform.forward * distance, Time.deltaTime * smooth);
         o.transform.rotation = Quaternion.identity;
     }
 
     void pickup()
     {
-        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+
+        var screenCast = mainCamera.GetComponent<Camera>().ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
+        Ray ray = mainCamera.GetComponent<Camera>().ScreenPointToRay(screenCast);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
         {
-            var screenCast = mainCamera.GetComponent<Camera>().ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
-            Ray ray = mainCamera.GetComponent<Camera>().ScreenPointToRay(screenCast);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            Pickupable p = hit.collider.GetComponent<Pickupable>();
+            if (p != null)
             {
-                Pickupable p = hit.collider.GetComponent<Pickupable>();
-                if (p != null)
+                if (selectedObject != null)
+                {
+                    selectedObject.GetComponent<Renderer>().material.color = regColor;
+                }
+                selectedObject = p.gameObject;
+                p.gameObject.GetComponent<Renderer>().material.color = highlightColor;
+                if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
                     carrying = true;
                     carriedObject = p.gameObject;
                     p.gameObject.GetComponent<Rigidbody>().useGravity = false;
+
                 }
+            }
+            else
+            {
+                selectedObject.GetComponent<Renderer>().material.color = regColor;
+                selectedObject = null;
             }
         }
     }
@@ -77,6 +93,7 @@ public class ARTapToPickUp : MonoBehaviour
     {
         carrying = false;
         //carriedObject.GetComponent<Rigidbody>().isKinematic = false;
+        carriedObject.GetComponent<Renderer>().material.color = regColor;
         carriedObject.gameObject.GetComponent<Rigidbody>().useGravity = true;
         carriedObject = null;
     }
