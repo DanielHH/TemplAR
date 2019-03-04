@@ -33,12 +33,21 @@ public class PathEditor : MonoBehaviour
                 } else {
                     Gizmos.color = normalWayPointColor;
                 }
-                Gizmos.DrawWireSphere(currentPosition, .15f);
+                Gizmos.DrawWireSphere(currentPosition, 1);
             } else {
-                Gizmos.DrawWireSphere(currentPosition, .15f);
+                Gizmos.DrawWireSphere(currentPosition, 1);
             }
         }
         Gizmos.color = pathColor;
     }
 
+    private void Start() {
+        wayPoints.Clear();
+        children = GetComponentsInChildren<WayPoint>();
+
+        foreach (WayPoint wayPoint in children) {
+            wayPoints.Add(wayPoint);
+
+        }
+    }
 }
