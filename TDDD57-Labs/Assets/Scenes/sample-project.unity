@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465776, g: 0.4964127, b: 0.5748186, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 107093224}
   - component: {fileID: 107093223}
   - component: {fileID: 107093225}
+  - component: {fileID: 107093226}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -410,6 +411,20 @@ MonoBehaviour:
   m_PlanePrefab: {fileID: 6332686646331546477, guid: 4ff068f05df841649b9beaabefc4f8f7,
     type: 3}
   m_DetectionFlags: -1
+--- !u!114 &107093226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107093222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e00b12141d09b44b9a8d4817f7628ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 6
+  smooth: 18
 --- !u!1 &231847308
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c7d4007d5199a41a96f009bf071bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToPlace: {fileID: 1997953001238138, guid: 16e7451e81164bc4caac73768f16ceb6,
+  objectToPlace: {fileID: 3117088137161970557, guid: a0e3ce95c1a8eaf4f80659cad58dee4d,
     type: 3}
   placementIndicator: {fileID: 231847308}
 --- !u!4 &1900725048
