@@ -8,33 +8,34 @@ public class SnapTrigger : MonoBehaviour
 
     private bool indicatorPlaced = false;
     private GameObject snappedIndicator;
-    private Collider collisionObjectCollider;
-
-
+    private Pickupable pickupableObject;
 
     private void OnTriggerEnter(Collider other) {
-        if (other.tag == "Cube" && !indicatorPlaced) {
-            collisionObjectCollider = other;
+        if (other.tag == "Pickupable") {
+            pickupableObject = other.GetComponent<Pickupable>();
         }
     }
 
     private void OnTriggerExit(Collider other) {
-        if (other.tag == "Cube" && !indicatorPlaced) {
-            collisionObjectCollider = null;
+        if (other.tag == "Pickupable") {
+            pickupableObject = null;
         }
     }
 
     void Update() {
-        if (collisionObjectCollider != null) {
-            Vector3 center = collisionObjectCollider.bounds.center;
+        if (pickupableObject != null) {
+            Vector3 center = pickupableObject.GetComponent<Collider>().bounds.center;
             if (!indicatorPlaced) {
                 if (GetComponent<BoxCollider>().bounds.Contains(center)) {
                     snappedIndicator = Instantiate(snappedIndicatorPrefab, transform.position, transform.rotation);
+                    snappedIndicator.transform.parent = transform;
+                    pickupableObject.Snap();
                     indicatorPlaced = true;
                 }
             } else {
                 if (!GetComponent<BoxCollider>().bounds.Contains(center)) {
                     Destroy(snappedIndicator);
+                    pickupableObject.UnSnap();
                     indicatorPlaced = false;
                 }
             }          

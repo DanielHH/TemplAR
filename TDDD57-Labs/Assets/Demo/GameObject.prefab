@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 3117088137615752632}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Cube
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,8 +155,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 0
   smooth: 0
-  partnerTag: 
-  closeDist: 0.5
 --- !u!114 &3117088137615752632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,3 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa30e3a04c13a84c8bfbab0d3c383e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  snapTrigger: {fileID: 0}
+  regColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  highlightColor:
+    serializedVersion: 2
+    rgba: 4282384181

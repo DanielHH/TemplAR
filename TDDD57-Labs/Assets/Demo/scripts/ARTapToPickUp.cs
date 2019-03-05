@@ -8,11 +8,10 @@ using System;
 public class ARTapToPickUp : MonoBehaviour
 {
     GameObject mainCamera;
-    GameObject carriedObject;
-    GameObject selectedObject;
+    Pickupable carriedObject;
+    Pickupable selectedObject;
 
-    Color32 regColor = new Color32(255, 255, 255, 255);
-    Color32 highlightColor = new Color32(53, 255, 63, 255);
+    public TMPro.TMP_Text debug;
 
     bool carrying = false;
     public float distance;
@@ -30,6 +29,7 @@ public class ARTapToPickUp : MonoBehaviour
     void Start()
     {
         mainCamera = GameObject.FindWithTag("MainCamera");
+        debug.SetText("WE GOT IT");
     }
 
     void Update()
@@ -54,9 +54,10 @@ public class ARTapToPickUp : MonoBehaviour
         carriedObject.transform.Rotate(5, 10, 15);
     }
 
-    void carry(GameObject o)
+    void carry(Pickupable o)
     {
         //o.transform.position = Vector3.Lerp(o.transform.position, mainCamera.transform.position + mainCamera.transform.forward * distance, Time.deltaTime * smooth);
+  
         o.transform.position = mainCamera.transform.position + mainCamera.transform.forward * distance;
         o.transform.rotation = Quaternion.identity;
 
@@ -74,33 +75,33 @@ public class ARTapToPickUp : MonoBehaviour
 
     void pickup()
     {
-
         var screenCast = mainCamera.GetComponent<Camera>().ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
         Ray ray = mainCamera.GetComponent<Camera>().ScreenPointToRay(screenCast);
         RaycastHit hit;
+        Debug.DrawRay(screenCast, ray.direction);
         if (Physics.Raycast(ray, out hit))
         {
             
-            Pickupable p = hit.collider.GetComponent<Pickupable>();
-            if (p != null)
-            {
-                if (selectedObject != null)
-                {
-                    selectedObject.GetComponent<Renderer>().material.color = regColor;
+            if (hit.collider.tag == "Pickupable") {
+                Pickupable p = hit.collider.GetComponent<Pickupable>();
+     
+                if (selectedObject != p) {
+                    if (selectedObject != null) {
+                        selectedObject.UnSelect();
+                    }
+                    selectedObject = p;
+                    selectedObject.Select();
                 }
-                selectedObject = p.gameObject;
-                p.gameObject.GetComponent<Renderer>().material.color = highlightColor;
-                if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
-                {
-                    carrying = true;
-                    carriedObject = p.gameObject;
-                    p.gameObject.GetComponent<Rigidbody>().useGravity = false;
 
+                if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began) {
+                    carrying = true;
+                    carriedObject = selectedObject;
+                    carriedObject.snapTrigger.gameObject.SetActive(true);
+                    carriedObject.UseGravity(false);
                 }
-            }
-            else
+            } else
             {
-                selectedObject.GetComponent<Renderer>().material.color = regColor;
+                selectedObject.UnSelect();
                 selectedObject = null;
             }
         }
@@ -116,10 +117,8 @@ public class ARTapToPickUp : MonoBehaviour
 
     void dropObject()
     {
-        carrying = false;
-        //carriedObject.GetComponent<Rigidbody>().isKinematic = false;
-        carriedObject.GetComponent<Renderer>().material.color = regColor;
-        carriedObject.gameObject.GetComponent<Rigidbody>().useGravity = true;
+        carrying = false; 
+        carriedObject.DropSelf();
         carriedObject = null;
     }
 }
