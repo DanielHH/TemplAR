@@ -18,6 +18,7 @@ public class ARTapToPlaceObject : MonoBehaviour
     {
         mainCamera = GameObject.FindWithTag("MainCamera");
         arOrigin = FindObjectOfType<ARSessionOrigin>();
+        Application.targetFrameRate = 30;
     }
 
 
