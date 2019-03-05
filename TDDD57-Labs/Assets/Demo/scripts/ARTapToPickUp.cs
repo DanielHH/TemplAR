@@ -10,12 +10,23 @@ public class ARTapToPickUp : MonoBehaviour
     GameObject mainCamera;
     GameObject carriedObject;
     GameObject selectedObject;
+
     Color32 regColor = new Color32(255, 255, 255, 255);
     Color32 highlightColor = new Color32(53, 255, 63, 255);
+
     bool carrying = false;
     public float distance;
     public float smooth;
 
+    /*
+    public string partnerTag;
+    public float closeDist = 5f;
+    private bool isSnapped;
+    Color32 snapColor = new Color32(255, 211, 0, 255);
+    GameObject partnerGO;
+
+    float dist = Mathf.Infinity;
+    */
     void Start()
     {
         mainCamera = GameObject.FindWithTag("MainCamera");
@@ -23,6 +34,9 @@ public class ARTapToPickUp : MonoBehaviour
 
     void Update()
     {
+        /*
+        partnerGO = GameObject.FindGameObjectWithTag(partnerTag);
+        */
         if (carrying)
         {
             carry(carriedObject);
@@ -44,6 +58,17 @@ public class ARTapToPickUp : MonoBehaviour
     {
         o.transform.position = Vector3.Lerp(o.transform.position, mainCamera.transform.position + mainCamera.transform.forward * distance, Time.deltaTime * smooth);
         o.transform.rotation = Quaternion.identity;
+
+
+        // Checks if the carried object is close enough to a snap to another object
+        /*
+        Vector3 partnerPos = mainCamera.GetComponent<Camera>().WorldToViewportPoint(partnerGO.transform.position);
+        Vector3 carryPos = mainCamera.GetComponent<Camera>().WorldToViewportPoint(o.transform.position);
+
+        dist = Vector3.Distance(partnerPos, carryPos);
+
+        o.GetComponent<Renderer>().material.color = (dist < closeDist) ? snapColor : highlightColor;
+        */
     }
 
     void pickup()
