@@ -56,7 +56,8 @@ public class ARTapToPickUp : MonoBehaviour
 
     void carry(GameObject o)
     {
-        o.transform.position = Vector3.Lerp(o.transform.position, mainCamera.transform.position + mainCamera.transform.forward * distance, Time.deltaTime * smooth);
+        //o.transform.position = Vector3.Lerp(o.transform.position, mainCamera.transform.position + mainCamera.transform.forward * distance, Time.deltaTime * smooth);
+        o.transform.position = mainCamera.transform.position + mainCamera.transform.forward * distance;
         o.transform.rotation = Quaternion.identity;
 
 
@@ -79,6 +80,7 @@ public class ARTapToPickUp : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
+            
             Pickupable p = hit.collider.GetComponent<Pickupable>();
             if (p != null)
             {

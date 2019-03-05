@@ -13,13 +13,13 @@ public class SnapTrigger : MonoBehaviour
 
 
     private void OnTriggerEnter(Collider other) {
-        if (other.tag == "Player" && !indicatorPlaced) {
+        if (other.tag == "Cube" && !indicatorPlaced) {
             collisionObjectCollider = other;
         }
     }
 
     private void OnTriggerExit(Collider other) {
-        if (other.tag == "Player" && !indicatorPlaced) {
+        if (other.tag == "Cube" && !indicatorPlaced) {
             collisionObjectCollider = null;
         }
     }
@@ -29,7 +29,7 @@ public class SnapTrigger : MonoBehaviour
             Vector3 center = collisionObjectCollider.bounds.center;
             if (!indicatorPlaced) {
                 if (GetComponent<BoxCollider>().bounds.Contains(center)) {
-                    snappedIndicator = Instantiate(snappedIndicatorPrefab, transform.position, Quaternion.identity);
+                    snappedIndicator = Instantiate(snappedIndicatorPrefab, transform.position, transform.rotation);
                     indicatorPlaced = true;
                 }
             } else {
