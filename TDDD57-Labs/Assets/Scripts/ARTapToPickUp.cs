@@ -20,7 +20,6 @@ public class ARTapToPickUp : MonoBehaviour
     void Start()
     {
         mainCamera = GameObject.FindWithTag("MainCamera");
-        debug.SetText("WE GOT IT");
     }
 
     void Update()

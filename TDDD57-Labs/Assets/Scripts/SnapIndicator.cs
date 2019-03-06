@@ -10,6 +10,9 @@ public class SnapIndicator : MonoBehaviour
 
     void Update()
     {
-        GetComponent<Renderer>().material.color = new Color32(255, 255, 255, (byte)Mathf.PingPong(Time.time * fadeSpeed, opacityRange));
+        foreach (Renderer renderer in GetComponentsInChildren<Renderer>()) {
+            renderer.material.color = new Color32(255, 255, 255, (byte)Mathf.PingPong(Time.time * fadeSpeed, opacityRange));
+        }
+        
     }
 }

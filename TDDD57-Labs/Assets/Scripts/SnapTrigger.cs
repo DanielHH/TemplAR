@@ -5,6 +5,7 @@ using UnityEngine;
 public class SnapTrigger : MonoBehaviour
 {
     public GameObject snappedIndicatorPrefab;
+    public float proximityDistance = 1f;
 
     private bool indicatorPlaced = false;
     private GameObject snappedIndicator;
@@ -14,13 +15,6 @@ public class SnapTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Pickupable") {
             pickupableObject = other.GetComponent<Pickupable>();
-            foundChild = false;
-        }
-    }
-
-    private void OnTriggerExit(Collider other) {
-        if (other.tag == "Pickupable") {
-            pickupableObject = null;
             foundChild = false;
         }
     }
@@ -43,7 +37,7 @@ public class SnapTrigger : MonoBehaviour
             if (foundChild) {
                 Vector3 center = pickupableObject.GetComponent<Collider>().bounds.center;
                 if (!indicatorPlaced) {
-                    if (GetComponent<BoxCollider>().bounds.Contains(center)) {
+                    if (Vector3.Distance(GetComponent<BoxCollider>().bounds.center, center) <= proximityDistance) {
                         snappedIndicator = Instantiate(snappedIndicatorPrefab, transform.position, transform.rotation);
                         snappedIndicator.transform.parent = transform;
                         pickupableObject.Snap();
@@ -51,7 +45,7 @@ public class SnapTrigger : MonoBehaviour
                     }
                 }
                 else {
-                    if (!GetComponent<BoxCollider>().bounds.Contains(center)) {
+                    if (Vector3.Distance(GetComponent<BoxCollider>().bounds.center, center) > proximityDistance) {
                         Destroy(snappedIndicator);
                         pickupableObject.UnSnap();
                         indicatorPlaced = false;
@@ -59,5 +53,9 @@ public class SnapTrigger : MonoBehaviour
                 }
             }        
         }
+    }
+
+    public void nullifyPO() {
+        pickupableObject = null;
     }
 }

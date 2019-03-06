@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pickupable : MonoBehaviour {
     public List<SnapTrigger> snapTriggers = new List<SnapTrigger>();
-    public Color32 regColor = new Color32(255, 255, 255, 255);
+    public Color32 regColor = new Color32(204, 204, 204, 255);
     public Color32 highlightColor = new Color32(53, 255, 63, 255);
 
     private bool snap = false;
@@ -21,6 +21,7 @@ public class Pickupable : MonoBehaviour {
             GetComponent<Rigidbody>().isKinematic = false;
             
         }
+        snapTriggers[currentSnapTrigger].nullifyPO();
         DeActivateSnapTriggers();
     }
 
