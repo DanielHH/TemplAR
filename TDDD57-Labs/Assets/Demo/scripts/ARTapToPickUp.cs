@@ -17,15 +17,6 @@ public class ARTapToPickUp : MonoBehaviour
     public float distance;
     public float smooth;
 
-    /*
-    public string partnerTag;
-    public float closeDist = 5f;
-    private bool isSnapped;
-    Color32 snapColor = new Color32(255, 211, 0, 255);
-    GameObject partnerGO;
-
-    float dist = Mathf.Infinity;
-    */
     void Start()
     {
         mainCamera = GameObject.FindWithTag("MainCamera");
@@ -34,9 +25,6 @@ public class ARTapToPickUp : MonoBehaviour
 
     void Update()
     {
-        /*
-        partnerGO = GameObject.FindGameObjectWithTag(partnerTag);
-        */
         if (carrying)
         {
             carry(carriedObject);
@@ -60,17 +48,6 @@ public class ARTapToPickUp : MonoBehaviour
   
         o.transform.position = mainCamera.transform.position + mainCamera.transform.forward * distance;
         o.transform.rotation = Quaternion.identity;
-
-
-        // Checks if the carried object is close enough to a snap to another object
-        /*
-        Vector3 partnerPos = mainCamera.GetComponent<Camera>().WorldToViewportPoint(partnerGO.transform.position);
-        Vector3 carryPos = mainCamera.GetComponent<Camera>().WorldToViewportPoint(o.transform.position);
-
-        dist = Vector3.Distance(partnerPos, carryPos);
-
-        o.GetComponent<Renderer>().material.color = (dist < closeDist) ? snapColor : highlightColor;
-        */
     }
 
     void pickup()
@@ -85,18 +62,16 @@ public class ARTapToPickUp : MonoBehaviour
             if (hit.collider.tag == "Pickupable") {
                 Pickupable p = hit.collider.GetComponent<Pickupable>();
      
-                if (selectedObject != p) {
-                    if (selectedObject != null) {
-                        selectedObject.UnSelect();
-                    }
-                    selectedObject = p;
-                    selectedObject.Select();
+                if (selectedObject != p && selectedObject != null) {
+                    selectedObject.UnSelect();
                 }
+                selectedObject = p;
+                selectedObject.Select();
 
                 if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began) {
                     carrying = true;
                     carriedObject = selectedObject;
-                    carriedObject.snapTrigger.gameObject.SetActive(true);
+                    carriedObject.ActivateSnapTriggers();
                     carriedObject.UseGravity(false);
                 }
             } else
