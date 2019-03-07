@@ -5,12 +5,13 @@
 		_MainTex("Base (A=Opacity)", 2D) = ""
 	}
 
-		Category{
-			Tags {"Queue" = "Transparent" "IgnoreProjector" = "True"}
-			ZWrite On
-			Blend SrcAlpha OneMinusSrcAlpha
+	Category{
+		Tags {"Queue" = "Transparent" "IgnoreProjector" = "True"}
+		ZWrite On
+		Blend SrcAlpha OneMinusSrcAlpha
 
-			SubShader {Pass {
+		SubShader {
+			Pass {
 				GLSLPROGRAM
 				varying mediump vec2 uv;
 
@@ -30,10 +31,13 @@
 				}
 				#endif     
 				ENDGLSL
-			}}
+			}
+		}
 
-			SubShader {Pass {
+		SubShader {
+			Pass {
 				SetTexture[_MainTex] {Combine texture * constant ConstantColor[_Color]}
-			}}
+			}
+		}
 	}
 }

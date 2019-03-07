@@ -384,6 +384,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1277157410, guid: 1dc5b2dd8a0eb8e489ee27063b379ee4, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1277157407, guid: 1dc5b2dd8a0eb8e489ee27063b379ee4, type: 3}
       propertyPath: pathToFollow
       value: 
