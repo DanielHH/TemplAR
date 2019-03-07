@@ -60,6 +60,7 @@ public class ARTapToPickUp : MonoBehaviour {
                     carrying = true;
                     carriedObject = HighlightedObject;
                     carriedObject.setSelected();
+                    carriedObject.ClearRb();
                     carriedObject.ActivateSnapTriggers();
 
                     carriedObject.UseGravity(false);
