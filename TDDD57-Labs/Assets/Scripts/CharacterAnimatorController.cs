@@ -17,6 +17,6 @@ public class CharacterAnimatorController : MonoBehaviour
 
     void Update()
     {
-        animator.SetFloat("MoveSpeed", pathFollowScript.speed);
+        animator.SetFloat("MoveSpeed", pathFollowScript.getSpeed());
     }
 }
