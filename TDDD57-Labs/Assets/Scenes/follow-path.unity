@@ -514,7 +514,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -543,8 +543,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788821779}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 16, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 40, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -609,7 +609,7 @@ PrefabInstance:
     - target: {fileID: 7885591865485804164, guid: 7c45418ec25afb244a6acad59bff0bf8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2840103117078944959, guid: 7c45418ec25afb244a6acad59bff0bf8,
         type: 3}
@@ -690,6 +690,16 @@ PrefabInstance:
         type: 3}
       propertyPath: reachDistance
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3906184666124926701, guid: 7c45418ec25afb244a6acad59bff0bf8,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3045645227101898492, guid: 7c45418ec25afb244a6acad59bff0bf8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c45418ec25afb244a6acad59bff0bf8, type: 3}
