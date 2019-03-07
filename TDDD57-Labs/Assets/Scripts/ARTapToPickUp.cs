@@ -7,7 +7,7 @@
 public class ARTapToPickUp : MonoBehaviour {
     GameObject mainCamera;
     Pickupable carriedObject;
-    Pickupable selectedObject;
+    Pickupable HighlightedObject;
 
     public TMPro.TMP_Text debug;
 
@@ -50,21 +50,23 @@ public class ARTapToPickUp : MonoBehaviour {
             if (hit.collider.tag == "Pickupable") {
                 Pickupable p = hit.collider.GetComponent<Pickupable>();
      
-                if (selectedObject != p && selectedObject != null) {
-                    selectedObject.UnSelect();
+                if (HighlightedObject != p && HighlightedObject != null) {
+                    HighlightedObject.Highlight(false);
                 }
-                selectedObject = p;
-                selectedObject.Select();
+                HighlightedObject = p;
+                HighlightedObject.Highlight(true);
 
                 if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began) {
                     carrying = true;
-                    carriedObject = selectedObject;
+                    carriedObject = HighlightedObject;
+                    carriedObject.setSelected();
                     carriedObject.ActivateSnapTriggers();
+
                     carriedObject.UseGravity(false);
                 }
             } else {
-                selectedObject.UnSelect();
-                selectedObject = null;
+                HighlightedObject.Highlight(false);
+                HighlightedObject = null;
             }
         }
     }

@@ -4,14 +4,15 @@ public class SnapTrigger : MonoBehaviour
 {
     public GameObject snappedIndicatorPrefab;
     public float proximityDistance = 1f;
+    public WayPoint wayPoint;
 
-    private bool indicatorPlaced = false;
     private GameObject snappedIndicator;
     private Pickupable pickupableObject;
+    private bool indicatorPlaced = false;
     private bool foundChild = false;
 
     private void OnTriggerEnter(Collider other) {
-        if (other.tag == "Pickupable") {
+        if (wayPoint.wayPointType == WayPointType.DANGER && other.tag == "Pickupable") {
             pickupableObject = other.GetComponent<Pickupable>();
             foundChild = false;
         }
@@ -22,11 +23,11 @@ public class SnapTrigger : MonoBehaviour
     }
 
     private void Update() {
-        if (pickupableObject != null) {
+        if (pickupableObject != null && pickupableObject.isSelected()) {
 
             for (int i = 0; i < pickupableObject.snapTriggers.Count; i++) {
                 if (pickupableObject.snapTriggers[i] == this) {
-                    pickupableObject.setCurrentSnapTrigger(i);
+                    pickupableObject.setCurrentSnapTrigger(this);
                     foundChild = true;
                     break;
                 }
@@ -36,23 +37,35 @@ public class SnapTrigger : MonoBehaviour
                 Vector3 center = pickupableObject.GetComponent<Collider>().bounds.center;
                 if (!indicatorPlaced) {
                     if (Vector3.Distance(GetComponent<BoxCollider>().bounds.center, center) <= proximityDistance) {
-                        snappedIndicator = Instantiate(snappedIndicatorPrefab, transform.position, transform.rotation);
-                        snappedIndicator.transform.parent = transform;
-                        pickupableObject.Snap();
-                        indicatorPlaced = true;
+                        if (wayPoint.wayPointType == WayPointType.DANGER) {
+                            snappedIndicator = Instantiate(snappedIndicatorPrefab, transform.position, transform.rotation);
+                            snappedIndicator.transform.parent = transform;
+                            pickupableObject.Snap();
+                            indicatorPlaced = true;
+                        }
                     }
                 } else {
                     if (Vector3.Distance(GetComponent<BoxCollider>().bounds.center, center) > proximityDistance) {
-                        Destroy(snappedIndicator);
+                        DestroyIndicator();
                         pickupableObject.UnSnap();
-                        indicatorPlaced = false;
                     }
                 }
-            }        
+            }
+        } else {
+            NullifyPO();
         }
     }
 
-    public void nullifyPO() {
+    public void NullifyPO() {
         pickupableObject = null;
+    }
+
+    public void SetWayPointType(WayPointType type) {
+        wayPoint.setWaypointType(type);
+    }
+
+    public void DestroyIndicator() {
+        Destroy(snappedIndicator);
+        indicatorPlaced = false;
     }
 }
