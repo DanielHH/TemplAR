@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
+
 public class Pickupable : MonoBehaviour {
     public List<SnapTrigger> snapTriggers = new List<SnapTrigger>();
     public Color32 regColor = new Color32(204, 204, 204, 255);
@@ -36,11 +39,15 @@ public class Pickupable : MonoBehaviour {
     }
 
     public void UnSelect() {
-        GetComponent<Renderer>().material.color = regColor;
+        foreach (Renderer renderer in GetComponentsInChildren<Renderer>()) {
+            renderer.material.color = regColor;
+        }      
     }
 
     public void Select() {
-        GetComponent<Renderer>().material.color = highlightColor;
+        foreach (Renderer renderer in GetComponentsInChildren<Renderer>()) {
+            renderer.material.color = highlightColor;
+        }
     }
 
     public void setCurrentSnapTrigger(int trigger) {

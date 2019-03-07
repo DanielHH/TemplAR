@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4264054471172963829}
   - component: {fileID: 2162459436917665183}
   - component: {fileID: 5651114110252058618}
+  - component: {fileID: 1783978794374596173}
   m_Layer: 0
   m_Name: Stair Offset
   m_TagString: Untagged
@@ -77,3 +78,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &1783978794374596173
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8164705868751100475}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.0000005, y: 8.000017, z: 4.0000286}
+  m_Center: {x: 0, y: 4.000001, z: -0.0000141859055}

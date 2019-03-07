@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2602356305560217556}
+  - component: {fileID: 3971875578652001445}
   m_Layer: 0
   m_Name: way_point_
   m_TagString: Untagged
@@ -30,6 +31,20 @@ Transform:
   m_Father: {fileID: 3644086007834775564}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3971875578652001445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3176671897784704316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74ad3cc20499cb458c08660ddb6c15e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wayPointType: 0
+  reachDistance: 0.1
 --- !u!1 &7956357493715464246
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,5 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathColor: {r: 0, g: 0, b: 0, a: 1}
-  pathNodeTransforms:
-  - {fileID: 2602356305560217556}
+  dangerWayPointColor: {r: 1, g: 0, b: 0, a: 1}
+  normalWayPointColor: {r: 0, g: 1, b: 0, a: 1}
+  wayPoints:
+  - {fileID: 3971875578652001445}
+  wayPointSphereRadius: 1
