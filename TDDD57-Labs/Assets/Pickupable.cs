@@ -11,10 +11,12 @@ public class Pickupable : MonoBehaviour {
     public Color32 highlightColor = new Color32(53, 255, 63, 255);
 
     private bool snap = false;
+    private bool selected = false;
     private SnapTrigger currentSnapTrigger = null;
 
     public void DropSelf() {
-        UnSelect();
+        Highlight(false);
+        selected = false;
         if (snap) {
             transform.position = currentSnapTrigger.transform.position;
             transform.rotation = currentSnapTrigger.transform.rotation;
@@ -40,15 +42,13 @@ public class Pickupable : MonoBehaviour {
         GetComponent<Rigidbody>().useGravity = useGravity;
     }
 
-    public void UnSelect() {
+    public void Highlight(bool highlighted) {
         foreach (Renderer renderer in GetComponentsInChildren<Renderer>()) {
-            renderer.material.color = regColor;
-        }      
-    }
-
-    public void Select() {
-        foreach (Renderer renderer in GetComponentsInChildren<Renderer>()) {
-            renderer.material.color = highlightColor;
+            if (highlighted) {
+                renderer.material.color = highlightColor;
+            } else {
+                renderer.material.color = regColor;
+            }  
         }
     }
 
@@ -63,9 +63,14 @@ public class Pickupable : MonoBehaviour {
     public void ActivateSnapTriggers() {
         if (currentSnapTrigger != null && currentSnapTrigger.wayPoint.wayPointType == WayPointType.NORMAL) {
             currentSnapTrigger.SetWayPointType(WayPointType.DANGER);
+            currentSnapTrigger.DestroyIndicator();
+            snap = false;
+
         }
         foreach (SnapTrigger trigger in snapTriggers) {
-            trigger.gameObject.SetActive(true);
+            if (trigger.wayPoint.wayPointType == WayPointType.DANGER) {
+                trigger.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -75,5 +80,13 @@ public class Pickupable : MonoBehaviour {
 
     public void UnSnap() {
         snap = false;
+    }
+
+    public void setSelected() {
+        selected = true;
+    }
+
+    public bool isSelected() {
+        return selected;
     }
 }

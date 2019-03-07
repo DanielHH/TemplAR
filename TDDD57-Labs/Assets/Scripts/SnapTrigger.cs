@@ -25,7 +25,7 @@ public class SnapTrigger : MonoBehaviour
     }
 
     private void Update() {
-        if (pickupableObject != null) {
+        if (pickupableObject != null && pickupableObject.isSelected()) {
 
             for (int i = 0; i < pickupableObject.snapTriggers.Count; i++) {
                 if (pickupableObject.snapTriggers[i] == this) {
@@ -46,15 +46,15 @@ public class SnapTrigger : MonoBehaviour
                             indicatorPlaced = true;
                         }
                     }
-                }
-                else {
+                } else {
                     if (Vector3.Distance(GetComponent<BoxCollider>().bounds.center, center) > proximityDistance) {
-                        Destroy(snappedIndicator);
+                        DestroyIndicator();
                         pickupableObject.UnSnap();
-                        indicatorPlaced = false;
                     }
                 }
-            }        
+            }
+        } else {
+            NullifyPO();
         }
     }
 
@@ -64,5 +64,10 @@ public class SnapTrigger : MonoBehaviour
 
     public void SetWayPointType(WayPointType type) {
         wayPoint.setWaypointType(type);
+    }
+
+    public void DestroyIndicator() {
+        Destroy(snappedIndicator);
+        indicatorPlaced = false;
     }
 }
