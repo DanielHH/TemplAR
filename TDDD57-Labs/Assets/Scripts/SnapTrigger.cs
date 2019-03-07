@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SnapTrigger : MonoBehaviour
 {
@@ -43,8 +41,7 @@ public class SnapTrigger : MonoBehaviour
                         pickupableObject.Snap();
                         indicatorPlaced = true;
                     }
-                }
-                else {
+                } else {
                     if (Vector3.Distance(GetComponent<BoxCollider>().bounds.center, center) > proximityDistance) {
                         Destroy(snappedIndicator);
                         pickupableObject.UnSnap();
