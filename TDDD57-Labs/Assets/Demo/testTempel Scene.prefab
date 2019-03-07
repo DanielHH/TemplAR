@@ -42,7 +42,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapTriggers:
-  - {fileID: 7092131055203761769}
+  - {fileID: 6054766401059099437}
   regColor:
     serializedVersion: 2
     rgba: 4294967295
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapTriggers:
-  - {fileID: 7092131055203761769}
+  - {fileID: 6054766401059099437}
   regColor:
     serializedVersion: 2
     rgba: 4294967295
@@ -128,7 +128,7 @@ Transform:
   - {fileID: 688244850865685852}
   - {fileID: 6054766400471884165}
   - {fileID: 4404249013168209098}
-  - {fileID: 6811454528831813614}
+  - {fileID: 6054766401059099124}
   - {fileID: 4404249013968160285}
   - {fileID: 6054766400052661571}
   - {fileID: 6054766400696106353}
@@ -384,10 +384,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 1277157410, guid: 1dc5b2dd8a0eb8e489ee27063b379ee4, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1277157407, guid: 1dc5b2dd8a0eb8e489ee27063b379ee4, type: 3}
       propertyPath: pathToFollow
       value: 
@@ -395,6 +391,10 @@ PrefabInstance:
     - target: {fileID: 1277157407, guid: 1dc5b2dd8a0eb8e489ee27063b379ee4, type: 3}
       propertyPath: originalSpeed
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277157410, guid: 1dc5b2dd8a0eb8e489ee27063b379ee4, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1dc5b2dd8a0eb8e489ee27063b379ee4, type: 3}
@@ -561,11 +561,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2840103117078944959}
     m_Modifications:
-    - target: {fileID: 6740757234444009902, guid: fddedd8fa97824242ab7f47070d788be,
-        type: 3}
-      propertyPath: m_Name
-      value: StartShrine
-      objectReference: {fileID: 0}
     - target: {fileID: 6740757234444009903, guid: fddedd8fa97824242ab7f47070d788be,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -620,6 +615,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6740757234444009902, guid: fddedd8fa97824242ab7f47070d788be,
+        type: 3}
+      propertyPath: m_Name
+      value: StartShrine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fddedd8fa97824242ab7f47070d788be, type: 3}
@@ -1080,7 +1080,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7232338474490737215, guid: 1b12a51b1a51d5848819797cc0bc44a8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1b12a51b1a51d5848819797cc0bc44a8, type: 3}
---- !u!114 &7092131055203761769 stripped
+--- !u!114 &6054766401059099437 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3921111799553240913, guid: 1b12a51b1a51d5848819797cc0bc44a8,
     type: 3}
@@ -1092,7 +1092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e0daa269ef14b546bd39a56a40b1125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &6811454528831813614 stripped
+--- !u!4 &6054766401059099124 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 757163531965032150, guid: 1b12a51b1a51d5848819797cc0bc44a8,
     type: 3}

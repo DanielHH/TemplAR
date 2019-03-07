@@ -609,7 +609,7 @@ PrefabInstance:
     - target: {fileID: 7885591865485804164, guid: 7c45418ec25afb244a6acad59bff0bf8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2840103117078944959, guid: 7c45418ec25afb244a6acad59bff0bf8,
         type: 3}
@@ -681,19 +681,49 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6054766401059790049, guid: 7c45418ec25afb244a6acad59bff0bf8,
+        type: 3}
+      propertyPath: snapTriggers.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054766401059790049, guid: 7c45418ec25afb244a6acad59bff0bf8,
+        type: 3}
+      propertyPath: regColor.rgba
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054766401059790049, guid: 7c45418ec25afb244a6acad59bff0bf8,
+        type: 3}
+      propertyPath: highlightColor.rgba
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7092131055203761769, guid: 7c45418ec25afb244a6acad59bff0bf8,
         type: 3}
       propertyPath: wayPoint
       value: 
       objectReference: {fileID: 217014201}
+    - target: {fileID: 3906184666124926701, guid: 7c45418ec25afb244a6acad59bff0bf8,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7151168630927661380, guid: 7c45418ec25afb244a6acad59bff0bf8,
         type: 3}
       propertyPath: reachDistance
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 3906184666124926701, guid: 7c45418ec25afb244a6acad59bff0bf8,
+    - target: {fileID: 2794236122322619169, guid: 7c45418ec25afb244a6acad59bff0bf8,
         type: 3}
-      propertyPath: m_IsKinematic
+      propertyPath: snapTriggers.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794236122322619169, guid: 7c45418ec25afb244a6acad59bff0bf8,
+        type: 3}
+      propertyPath: regColor.rgba
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794236122322619169, guid: 7c45418ec25afb244a6acad59bff0bf8,
+        type: 3}
+      propertyPath: highlightColor.rgba
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3045645227101898492, guid: 7c45418ec25afb244a6acad59bff0bf8,
