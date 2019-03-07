@@ -89,4 +89,10 @@ public class Pickupable : MonoBehaviour {
     public bool isSelected() {
         return selected;
     }
+
+    public void ClearRb() {
+        Rigidbody rigidbody = GetComponent<Rigidbody>();
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
+    }
 }
