@@ -10,9 +10,6 @@
 			ZWrite On
 			Blend SrcAlpha OneMinusSrcAlpha
 
-
-
-
 			SubShader {Pass {
 				GLSLPROGRAM
 				varying mediump vec2 uv;
