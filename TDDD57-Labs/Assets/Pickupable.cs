@@ -11,20 +11,22 @@ public class Pickupable : MonoBehaviour {
     public Color32 highlightColor = new Color32(53, 255, 63, 255);
 
     private bool snap = false;
-    private int currentSnapTrigger = 0;
+    private SnapTrigger currentSnapTrigger = null;
 
     public void DropSelf() {
         UnSelect();
         if (snap) {
-            transform.position = snapTriggers[currentSnapTrigger].transform.position;
-            transform.rotation = snapTriggers[currentSnapTrigger].transform.rotation;         
+            transform.position = currentSnapTrigger.transform.position;
+            transform.rotation = currentSnapTrigger.transform.rotation;
+            currentSnapTrigger.SetWayPointType(WayPointType.NORMAL);
             GetComponent<Rigidbody>().isKinematic = true;
         } else {
             GetComponent<Rigidbody>().useGravity = true;
-            GetComponent<Rigidbody>().isKinematic = false;
-            
+            GetComponent<Rigidbody>().isKinematic = false; 
         }
-        snapTriggers[currentSnapTrigger].nullifyPO();
+        if (currentSnapTrigger != null) {
+            currentSnapTrigger.NullifyPO();
+        }
         DeActivateSnapTriggers();
     }
 
@@ -50,15 +52,18 @@ public class Pickupable : MonoBehaviour {
         }
     }
 
-    public void setCurrentSnapTrigger(int trigger) {
+    public void setCurrentSnapTrigger(SnapTrigger trigger) {
         currentSnapTrigger = trigger;
     }
 
-    public int getCurrentSnapTrigger() {
+    public SnapTrigger getCurrentSnapTrigger() {
         return currentSnapTrigger;
     }
 
     public void ActivateSnapTriggers() {
+        if (currentSnapTrigger != null && currentSnapTrigger.wayPoint.wayPointType == WayPointType.NORMAL) {
+            currentSnapTrigger.SetWayPointType(WayPointType.DANGER);
+        }
         foreach (SnapTrigger trigger in snapTriggers) {
             trigger.gameObject.SetActive(true);
         }

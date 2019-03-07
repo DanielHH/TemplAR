@@ -31,9 +31,6 @@ public class FollowPath : MonoBehaviour {
 
         float distance = Vector3.Distance(targetPosition, transform.position);
         if (distance <= targetWayPoint.reachDistance) {
-            if (Input.GetMouseButton(0)) {
-                targetWayPoint.wayPointType = WayPointType.NORMAL;
-            }
             if (targetWayPoint.wayPointType == WayPointType.DANGER) {
                 speed = 0;
             } else {
