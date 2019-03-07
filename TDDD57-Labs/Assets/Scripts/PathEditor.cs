@@ -9,6 +9,8 @@ public class PathEditor : MonoBehaviour
     public Color normalWayPointColor = Color.green;
     public List<WayPoint> wayPoints = new List<WayPoint>();
 
+    public float wayPointSphereRadius = .1f;
+
     private WayPoint[] children;
 
     private void OnDrawGizmos() {
@@ -33,9 +35,9 @@ public class PathEditor : MonoBehaviour
                 } else {
                     Gizmos.color = normalWayPointColor;
                 }
-                Gizmos.DrawWireSphere(currentPosition, 1);
+                Gizmos.DrawWireSphere(currentPosition, wayPointSphereRadius);
             } else {
-                Gizmos.DrawWireSphere(currentPosition, 1);
+                Gizmos.DrawWireSphere(currentPosition, wayPointSphereRadius);
             }
         }
         Gizmos.color = pathColor;
