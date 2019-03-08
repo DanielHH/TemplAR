@@ -5,15 +5,18 @@
 /// It is in the 'AR Session Origin' object.
 /// </summary>
 public class ARTapToPickUp : MonoBehaviour {
-    GameObject mainCamera;
-    Pickupable carriedObject;
-    Pickupable HighlightedObject;
+    private GameObject mainCamera;
+    private Pickupable carriedObject;
+    private Pickupable HighlightedObject;
 
     public TMPro.TMP_Text debug;
 
-    bool carrying = false;
+    private  bool carrying = false;
     public float distance;
     public float smooth;
+
+    private Touch firstTouch;
+    public float zThresh = 15f;
 
     void Start() {
         mainCamera = GameObject.FindWithTag("MainCamera");
@@ -35,9 +38,25 @@ public class ARTapToPickUp : MonoBehaviour {
 
     void carry(Pickupable o) {
         //o.transform.position = Vector3.Lerp(o.transform.position, mainCamera.transform.position + mainCamera.transform.forward * distance, Time.deltaTime * smooth);
-  
+        Touch CurrentTouch = Input.GetTouch(0);
+        if (CurrentTouch.phase == TouchPhase.Began) {
+            firstTouch = CurrentTouch;
+        }
+        Vector3 firstTouchPosition = firstTouch.position;
+        Vector3 currentTouchPosition = CurrentTouch.position;
+        float yDistance = Mathf.Abs(firstTouchPosition.y - currentTouchPosition.y);
+        if (yDistance > zThresh) {
+            if (firstTouchPosition.y > currentTouchPosition.y) {
+                distance -= .5f;
+            } else {
+                distance += .5f;
+            }
+        }
+
         o.transform.position = mainCamera.transform.position + mainCamera.transform.forward * distance;
         o.transform.rotation = Quaternion.identity;
+
+        debug.SetText("first Touch Y = " + firstTouchPosition.y + "Current: " + currentTouchPosition.y);
     }
 
     void pickup() {
@@ -73,7 +92,7 @@ public class ARTapToPickUp : MonoBehaviour {
     }
 
     void checkDrop() {
-        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began) {
+        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended) {
             dropObject();
         }
     }
