@@ -12,11 +12,14 @@ public class ARTapToPickUp : MonoBehaviour {
     public TMPro.TMP_Text debug;
 
     private  bool carrying = false;
-    public float distance;
+    public float minDistance;
+    private float currentDistance;
     public float smooth;
 
-    private Touch firstTouch;
+    private bool touchStarted = false;
+    private float firstTouchY;
     public float zThresh = 15f;
+    public float zSpeed = .5f;
 
     void Start() {
         mainCamera = GameObject.FindWithTag("MainCamera");
@@ -38,25 +41,32 @@ public class ARTapToPickUp : MonoBehaviour {
 
     void carry(Pickupable o) {
         //o.transform.position = Vector3.Lerp(o.transform.position, mainCamera.transform.position + mainCamera.transform.forward * distance, Time.deltaTime * smooth);
-        Touch CurrentTouch = Input.GetTouch(0);
-        if (CurrentTouch.phase == TouchPhase.Began) {
-            firstTouch = CurrentTouch;
-        }
-        Vector3 firstTouchPosition = firstTouch.position;
-        Vector3 currentTouchPosition = CurrentTouch.position;
-        float yDistance = Mathf.Abs(firstTouchPosition.y - currentTouchPosition.y);
-        if (yDistance > zThresh) {
-            if (firstTouchPosition.y > currentTouchPosition.y) {
-                distance -= .5f;
-            } else {
-                distance += .5f;
+        if (Input.touchCount >= 1) {
+            Touch CurrentTouch = Input.GetTouch(0);
+            if (!touchStarted) {
+                firstTouchY = CurrentTouch.position.y;
+                touchStarted = true;
+            }
+
+            float currentTouchPositionY = CurrentTouch.position.y;
+            float yDistance = Mathf.Abs(firstTouchY - currentTouchPositionY);
+            if (yDistance > zThresh) {
+                if (firstTouchY > currentTouchPositionY) {
+                    currentDistance -= zSpeed;
+                } else {
+                    currentDistance += zSpeed;
+                }
             }
         }
 
-        o.transform.position = mainCamera.transform.position + mainCamera.transform.forward * distance;
-        o.transform.rotation = Quaternion.identity;
+        if (currentDistance < minDistance) {
+            currentDistance = minDistance;
+        }
 
-        debug.SetText("first Touch Y = " + firstTouchPosition.y + "Current: " + currentTouchPosition.y);
+        debug.SetText("distance: " + minDistance);
+        o.transform.position = mainCamera.transform.position + mainCamera.transform.forward * currentDistance;
+        o.transform.rotation = Quaternion.identity;
+        //debug.SetText("first Touch Y = " + firstTouchY + "Current: " + currentTouchPositionY);
     }
 
     void pickup() {
@@ -98,6 +108,7 @@ public class ARTapToPickUp : MonoBehaviour {
     }
 
     void dropObject() {
+        touchStarted = false;
         carrying = false; 
         carriedObject.DropSelf();
         carriedObject = null;
