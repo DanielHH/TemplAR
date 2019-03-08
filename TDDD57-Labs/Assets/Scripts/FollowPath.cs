@@ -6,8 +6,8 @@ public class FollowPath : MonoBehaviour {
     public PathEditor pathToFollow;
 
     public int currentWayPointID = 0;
-    public float originalSpeed = 2;
-    public float reachDistance = .1f;
+    public float originalSpeed = 8;
+    //public float reachDistance = .1f;
     public float rotationSpeed = .5f;
 
     private Vector3 previousPosition;

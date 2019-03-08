@@ -90,7 +90,6 @@ GameObject:
   - component: {fileID: 3483308783186536815}
   - component: {fileID: 4563874563267347944}
   - component: {fileID: 2803654848325090091}
-  - component: {fileID: 2742568687829768334}
   - component: {fileID: 6054766401059790049}
   m_Layer: 0
   m_Name: Pickupable_StraightPathFenced
@@ -192,19 +191,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &2742568687829768334
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3578197950176103580}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 8.000003, y: 2.0000293, z: 8.0000105}
-  m_Center: {x: 0, y: 1.0000011, z: -0.00000333786}
 --- !u!114 &6054766401059790049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,7 +207,7 @@ MonoBehaviour:
   - {fileID: 0}
   regColor:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4292006610
   highlightColor:
     serializedVersion: 2
     rgba: 4282384181
