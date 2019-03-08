@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Pickupable : MonoBehaviour {
     public List<SnapTrigger> snapTriggers = new List<SnapTrigger>();
-    public Color32 regColor = new Color32(204, 204, 204, 255);
+    public Color32 regColor = new Color32(255, 255, 255, 255);
     public Color32 highlightColor = new Color32(53, 255, 63, 255);
 
     private bool snap = false;
@@ -43,11 +43,12 @@ public class Pickupable : MonoBehaviour {
     }
 
     public void Highlight(bool highlighted) {
+
         foreach (Renderer renderer in GetComponentsInChildren<Renderer>()) {
             if (highlighted) {
-                renderer.material.color = highlightColor;
+                renderer.material.SetColor("_EmissionColor", highlightColor);
             } else {
-                renderer.material.color = regColor;
+                renderer.material.SetColor("_EmissionColor", regColor);
             }  
         }
     }
