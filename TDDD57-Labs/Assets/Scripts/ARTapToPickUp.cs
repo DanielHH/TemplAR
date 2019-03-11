@@ -69,7 +69,6 @@ public class ARTapToPickUp : MonoBehaviour {
         var screenCast = mainCamera.GetComponent<Camera>().ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
         Ray ray = mainCamera.GetComponent<Camera>().ScreenPointToRay(screenCast);
         RaycastHit hit;
-        Debug.DrawRay(screenCast, ray.direction);
         if (Physics.Raycast(ray, out hit)) {
             
             if (hit.collider.tag == "Pickupable") {
