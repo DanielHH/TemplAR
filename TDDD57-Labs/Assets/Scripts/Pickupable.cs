@@ -14,6 +14,12 @@ public class Pickupable : MonoBehaviour {
     private bool selected = false;
     private SnapTrigger currentSnapTrigger = null;
 
+    private void Start() {
+        foreach (Renderer renderer in GetComponentsInChildren<Renderer>()) {
+            renderer.material.SetColor("_EmissionColor", regColor);
+        }
+    }
+
     public void DropSelf() {
         Highlight(false);
         selected = false;
