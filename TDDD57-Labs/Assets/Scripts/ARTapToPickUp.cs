@@ -14,7 +14,6 @@ public class ARTapToPickUp : MonoBehaviour {
     private  bool carrying = false;
     public float minDistance;
     private float currentDistance;
-    public float smooth;
 
     private bool touchStarted = false;
     private float firstTouchY;
@@ -29,7 +28,6 @@ public class ARTapToPickUp : MonoBehaviour {
         if (carrying) {
             carry(carriedObject);
             checkDrop();
-            //rotateObject();
         } else {
             pickup();
         }
@@ -40,7 +38,6 @@ public class ARTapToPickUp : MonoBehaviour {
     }
 
     void carry(Pickupable o) {
-        //o.transform.position = Vector3.Lerp(o.transform.position, mainCamera.transform.position + mainCamera.transform.forward * distance, Time.deltaTime * smooth);
         if (Input.touchCount >= 1) {
             Touch CurrentTouch = Input.GetTouch(0);
             if (!touchStarted) {
@@ -66,7 +63,6 @@ public class ARTapToPickUp : MonoBehaviour {
         debug.SetText("distance: " + minDistance);
         o.transform.position = mainCamera.transform.position + mainCamera.transform.forward * currentDistance;
         o.transform.rotation = Quaternion.identity;
-        //debug.SetText("first Touch Y = " + firstTouchY + "Current: " + currentTouchPositionY);
     }
 
     void pickup() {

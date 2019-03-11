@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 5716195203567672111}
   - component: {fileID: 823552639}
   - component: {fileID: 823552640}
+  - component: {fileID: 4245942118535407477}
   m_Layer: 0
   m_Name: Pickupable_Stairs 2
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -144,6 +145,19 @@ MonoBehaviour:
   highlightColor:
     serializedVersion: 2
     rgba: 4282384181
+--- !u!65 &4245942118535407477
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823552638}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14, y: 2, z: 18}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!1 &710859326883764109
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,9 +169,10 @@ GameObject:
   - component: {fileID: 5737406471784816182}
   - component: {fileID: 6389456193087676009}
   - component: {fileID: 4406053880924354645}
+  - component: {fileID: 1640011546331144940}
   m_Layer: 0
   m_Name: Block 1x5
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -221,6 +236,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &1640011546331144940
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710859326883764109}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0000002, y: 10.000009, z: 2.0000367}
+  m_Center: {x: 0.0000038146973, y: 4.999999, z: -0.000018119812}
 --- !u!1 &1644461978154439569
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +262,7 @@ GameObject:
   - component: {fileID: 2786903029177147431}
   m_Layer: 0
   m_Name: Block 1x4
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -311,7 +339,7 @@ GameObject:
   - component: {fileID: 3598477374048116309}
   m_Layer: 0
   m_Name: Fence 1 Bright
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -388,7 +416,7 @@ GameObject:
   - component: {fileID: 5602347476021193413}
   m_Layer: 0
   m_Name: Block 1x4 (5)
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -465,7 +493,7 @@ GameObject:
   - component: {fileID: 6001063977615485492}
   m_Layer: 0
   m_Name: Block 1x5 (1)
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -542,7 +570,7 @@ GameObject:
   - component: {fileID: 7105104277020329044}
   m_Layer: 0
   m_Name: Block 1x4 (1)
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -619,7 +647,7 @@ GameObject:
   - component: {fileID: 6738915903939143807}
   m_Layer: 0
   m_Name: Block 1x4 (2)
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -696,7 +724,7 @@ GameObject:
   - component: {fileID: 1933338994257615022}
   m_Layer: 0
   m_Name: Block 1x4 (4)
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -773,7 +801,7 @@ GameObject:
   - component: {fileID: 5955417263087090553}
   m_Layer: 0
   m_Name: Fence 1 Bright (1)
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -850,7 +878,7 @@ GameObject:
   - component: {fileID: 1084623847048833684}
   m_Layer: 0
   m_Name: Block 1x4 (6)
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -927,7 +955,7 @@ GameObject:
   - component: {fileID: 6542163641213050892}
   m_Layer: 0
   m_Name: Block 1x4 (7)
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1004,7 +1032,7 @@ GameObject:
   - component: {fileID: 1900417968310821843}
   m_Layer: 0
   m_Name: Block 1x4 (3)
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1081,7 +1109,7 @@ GameObject:
   - component: {fileID: 1465462717784850147}
   m_Layer: 0
   m_Name: Fence 1 Bright (2)
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1158,7 +1186,7 @@ GameObject:
   - component: {fileID: 3029543570328523785}
   m_Layer: 0
   m_Name: Fence 1 Bright (3)
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

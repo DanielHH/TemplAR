@@ -9,7 +9,8 @@ public class ARTapToPlaceObject : MonoBehaviour {
     public GameObject placementIndicator;
 
     private ARSessionOrigin arOrigin;
-    private Pose placementPose;
+    private Pose ARPlacementPose;
+    private Pose IGlacementPose;
     private bool placementPoseIsValid = false;
     void Start() {
         mainCamera = GameObject.FindWithTag("MainCamera");
@@ -28,13 +29,13 @@ public class ARTapToPlaceObject : MonoBehaviour {
     }
 
     private void PlaceObject() {
-        Instantiate(objectToPlace, placementPose.position, placementPose.rotation);
+        Instantiate(objectToPlace, ARPlacementPose.position, Quaternion.identity);
     }
 
     private void updatePlacementIndicator() {
         if (placementPoseIsValid) {
             placementIndicator.SetActive(true);
-            placementIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
+            placementIndicator.transform.SetPositionAndRotation(IGlacementPose.position, ARPlacementPose.rotation);
         } else {
             placementIndicator.SetActive(false);
         }
@@ -42,16 +43,23 @@ public class ARTapToPlaceObject : MonoBehaviour {
 
     private void updatePlacementPose() {
         var screenCast = mainCamera.GetComponent<Camera>().ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
+        Ray ray = mainCamera.GetComponent<Camera>().ScreenPointToRay(screenCast);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit)) {
+            IGlacementPose.position = hit.point;
+        }
+
         var hits = new List<ARRaycastHit>();
         arOrigin.Raycast(screenCast, hits, TrackableType.Planes);
 
         placementPoseIsValid = hits.Count > 0;
         if (placementPoseIsValid) {
-            placementPose = hits[0].pose;
+            ARPlacementPose = hits[0].pose;
             
             var cameraForward = Camera.current.transform.forward;
             var cameraBearing = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
-            placementPose.rotation = Quaternion.LookRotation(cameraBearing);
+            ARPlacementPose.rotation = Quaternion.LookRotation(cameraBearing);
             
         }
     }

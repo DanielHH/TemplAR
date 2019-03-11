@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5934120472123882881}
   m_Layer: 0
   m_Name: Ground + Flat Bright 4x4
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 1357546768378899987}
   m_Layer: 0
   m_Name: Fence 2 Bright (2)
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 2648304805378726841}
   m_Layer: 0
   m_Name: Fence 2 Bright
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 7962531465471539036}
   m_Layer: 0
   m_Name: Fence 2 Bright (1)
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 5708746379712404849}
   m_Layer: 0
   m_Name: Fence 2 Bright (3)
-  m_TagString: Untagged
+  m_TagString: Pickupable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
