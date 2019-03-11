@@ -36,7 +36,7 @@ public class SnapTrigger : MonoBehaviour
             if (foundChild) {
                 Vector3 center = pickupableObject.GetComponent<Collider>().bounds.center;
                 if (!indicatorPlaced) {
-                    if (Vector3.Distance(GetComponent<BoxCollider>().bounds.center, center) <= proximityDistance) {
+                    if (Vector3.Distance(GetComponent<Collider>().bounds.center, center) <= proximityDistance) {
                         if (wayPoint.wayPointType == WayPointType.DANGER) {
                             snappedIndicator = Instantiate(snappedIndicatorPrefab, transform.position, transform.rotation);
                             snappedIndicator.transform.parent = transform;
@@ -45,7 +45,7 @@ public class SnapTrigger : MonoBehaviour
                         }
                     }
                 } else {
-                    if (Vector3.Distance(GetComponent<BoxCollider>().bounds.center, center) > proximityDistance) {
+                    if (Vector3.Distance(GetComponent<Collider>().bounds.center, center) > proximityDistance) {
                         DestroyIndicator();
                         pickupableObject.UnSnap();
                     }

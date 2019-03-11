@@ -396,7 +396,6 @@ GameObject:
   - component: {fileID: 6332302249008488334}
   - component: {fileID: 9145511766256982021}
   - component: {fileID: 4975417499072527962}
-  - component: {fileID: 7216882683105550113}
   - component: {fileID: 3097814281438744172}
   m_Layer: 0
   m_Name: Indicator_StraightPathFenceSnap
@@ -469,19 +468,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7216882683105550113
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8700544336875463460}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 8.000003, y: 2.0000293, z: 8.0000105}
-  m_Center: {x: 0, y: 1.0000011, z: -0.00000333786}
 --- !u!114 &3097814281438744172
 MonoBehaviour:
   m_ObjectHideFlags: 0
