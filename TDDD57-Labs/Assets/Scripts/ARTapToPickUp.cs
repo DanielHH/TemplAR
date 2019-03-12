@@ -16,9 +16,12 @@ public class ARTapToPickUp : MonoBehaviour {
     private float currentDistance;
 
     private bool touchStarted = false;
-    private float firstTouchY;
+    private float startTouchY;
     public float zThresh = 15f;
     public float zSpeed = .5f;
+    private bool hasSwiped = false;
+
+    private int newtouches = 0;
 
     void Start() {
         mainCamera = GameObject.FindWithTag("MainCamera");
@@ -27,7 +30,7 @@ public class ARTapToPickUp : MonoBehaviour {
     void Update() {
         if (carrying) {
             carry(carriedObject);
-            checkDrop();
+            //checkDrop();
         } else {
             pickup();
         }
@@ -39,28 +42,49 @@ public class ARTapToPickUp : MonoBehaviour {
 
     void carry(Pickupable o) {
         if (Input.touchCount >= 1) {
-            Touch CurrentTouch = Input.GetTouch(0);
-            if (!touchStarted) {
-                firstTouchY = CurrentTouch.position.y;
-                touchStarted = true;
+            Touch currentTouch = Input.GetTouch(0);
+            hasSwiped = false;
+            switch (currentTouch.phase) {
+                case TouchPhase.Began:
+                    newtouches++;
+                    touchStarted = !touchStarted;
+                    startTouchY = currentTouch.position.y;
+                    break;
+                case TouchPhase.Moved:
+                    if (Mathf.Abs(startTouchY - currentTouch.position.y) > zThresh) {
+                        hasSwiped = true;
+                        if (startTouchY > currentTouch.position.y) {
+                            currentDistance -= zSpeed;
+                        } else {
+                            currentDistance += zSpeed;
+                        }
+                    }
+                    break;
+                case TouchPhase.Stationary:
+                    if (Mathf.Abs(startTouchY - currentTouch.position.y) > zThresh) {
+                        hasSwiped = true;
+                        if (startTouchY > currentTouch.position.y) {
+                            currentDistance -= zSpeed;
+                        } else {
+                            currentDistance += zSpeed;
+                        }
+                    }
+                    break;
+                case TouchPhase.Ended:
+                    if (!hasSwiped && !touchStarted) {
+                        dropObject();
+                    }
+                    break;
             }
 
-            float currentTouchPositionY = CurrentTouch.position.y;
-            float yDistance = Mathf.Abs(firstTouchY - currentTouchPositionY);
-            if (yDistance > zThresh) {
-                if (firstTouchY > currentTouchPositionY) {
-                    currentDistance -= zSpeed;
-                } else {
-                    currentDistance += zSpeed;
-                }
+            if (currentDistance < minDistance) {
+                currentDistance = minDistance;
             }
+
+            debug.SetText("startTouchY " + startTouchY + " currentTouchY" + currentTouch.position.y + "Touch Started: " + touchStarted);
         }
 
-        if (currentDistance < minDistance) {
-            currentDistance = minDistance;
-        }
-
-        debug.SetText("distance: " + minDistance);
+        
         o.transform.position = mainCamera.transform.position + mainCamera.transform.forward * currentDistance;
         o.transform.rotation = Quaternion.identity;
     }
@@ -82,6 +106,8 @@ public class ARTapToPickUp : MonoBehaviour {
 
                 if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began) {
                     carrying = true;
+                    startTouchY = Input.GetTouch(0).position.y;
+                    touchStarted = true;
                     carriedObject = HighlightedObject;
                     carriedObject.setSelected();
                     carriedObject.ClearRb();
@@ -97,13 +123,13 @@ public class ARTapToPickUp : MonoBehaviour {
     }
 
     void checkDrop() {
-        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended) {
+        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended && !hasSwiped) {
             dropObject();
         }
     }
 
     void dropObject() {
-        touchStarted = false;
+        //touchStarted = false;
         carrying = false; 
         carriedObject.DropSelf();
         carriedObject = null;
