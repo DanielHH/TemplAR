@@ -53,7 +53,7 @@ public class ARTapToPickUp : MonoBehaviour {
                     break;
                 case TouchPhase.Moved:
                 case TouchPhase.Stationary:
-                    if (Mathf.Abs(startTouchY - currentTouch.position.y) > zThresh && rotationSpeed == 0) {
+                    if (Mathf.Abs(startTouchY - currentTouch.position.y) > zThresh && rotateAroundY == 0) {
                         quickTouch = false;
                         if (startTouchY > currentTouch.position.y) {
                             currentDistance -= zSpeed;
