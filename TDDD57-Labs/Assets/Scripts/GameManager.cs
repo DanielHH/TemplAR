@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public PathEditor path;
 
+    public TMPro.TMP_Text debug;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +16,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0)) {
-            Debug.Log("NO DANGER");
-        }
+
+    }
+
+    public void ResetLevel() {
+        debug.SetText("NUUGG");
+        GameObject level = GameObject.FindGameObjectWithTag("LevelObject");
+        Destroy(level);
     }
 }
