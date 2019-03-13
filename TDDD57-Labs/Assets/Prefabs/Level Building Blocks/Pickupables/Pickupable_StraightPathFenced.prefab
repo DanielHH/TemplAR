@@ -89,6 +89,8 @@ GameObject:
   - component: {fileID: 1514412577404277573}
   - component: {fileID: 3483308783186536815}
   - component: {fileID: 4563874563267347944}
+  - component: {fileID: 4174511059541555617}
+  - component: {fileID: 2672129258690961356}
   - component: {fileID: 2803654848325090091}
   - component: {fileID: 6054766401059790049}
   m_Layer: 0
@@ -175,6 +177,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8.000003, y: 2.0000293, z: 8.0000105}
   m_Center: {x: 0, y: 1.0000011, z: -0.00000333786}
+--- !u!65 &4174511059541555617
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3578197950176103580}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 8}
+  m_Center: {x: 3, y: 2.8, z: 0}
+--- !u!65 &2672129258690961356
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3578197950176103580}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 8}
+  m_Center: {x: -3, y: 2.8, z: 0}
 --- !u!54 &2803654848325090091
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -222,7 +250,6 @@ GameObject:
   - component: {fileID: 7357262080434242217}
   - component: {fileID: 2017141924443114164}
   - component: {fileID: 3179543660431602811}
-  - component: {fileID: 1357546768378899987}
   m_Layer: 0
   m_Name: Fence 2 Bright (2)
   m_TagString: Pickupable
@@ -289,19 +316,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1357546768378899987
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4171091452168865441}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.8000004, y: 3.169727, z: 16}
-  m_Center: {x: 0, y: 1.584853, z: -4}
 --- !u!1 &5502438977399927666
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +327,6 @@ GameObject:
   - component: {fileID: 5021262506225601444}
   - component: {fileID: 8024341523561949859}
   - component: {fileID: 7610223275852077699}
-  - component: {fileID: 2648304805378726841}
   m_Layer: 0
   m_Name: Fence 2 Bright
   m_TagString: Pickupable
@@ -380,19 +393,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2648304805378726841
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5502438977399927666}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.8000004, y: 3.169727, z: 16}
-  m_Center: {x: 0, y: 1.584853, z: -4}
 --- !u!1 &7138221622303446749
 GameObject:
   m_ObjectHideFlags: 0
