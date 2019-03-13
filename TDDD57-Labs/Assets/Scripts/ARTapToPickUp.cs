@@ -17,12 +17,17 @@ public class ARTapToPickUp : MonoBehaviour {
 
     private bool quickTouch = true;
     private float startTouchY;
+    private float startTouchX;
+    private float rotateAroundY;
     public float zThresh = 15f;
     public float zSpeed = .5f;
+    public float rotationSpeed = 5f;
+    private Quaternion target;
 
     void Start() {
         mainCamera = GameObject.FindWithTag("MainCamera");
         currentDistance = minDistance;
+        rotateAroundY = 0;
     }
 
     void Update() {
@@ -44,6 +49,7 @@ public class ARTapToPickUp : MonoBehaviour {
             switch (currentTouch.phase) {
                 case TouchPhase.Began:
                     startTouchY = currentTouch.position.y;
+                    startTouchX = currentTouch.position.x;
                     break;
                 case TouchPhase.Moved:
                 case TouchPhase.Stationary:
@@ -55,12 +61,22 @@ public class ARTapToPickUp : MonoBehaviour {
                             currentDistance += zSpeed;
                         }
                     }
+                    else if (Mathf.Abs(startTouchX - currentTouch.position.x) > zThresh) {
+                        quickTouch = false;
+                        if (startTouchX > currentTouch.position.x) {
+                            rotateAroundY = rotationSpeed;
+                        } else {
+                            rotateAroundY = -rotationSpeed;
+                        }
+
+                    }
                     break;
                 case TouchPhase.Ended:
                     if (quickTouch) {
                         dropObject();
                         reposition = false;
                     } else {
+                        rotateAroundY = 0;
                         quickTouch = true;
                     }
                     break;
@@ -75,7 +91,7 @@ public class ARTapToPickUp : MonoBehaviour {
 
         if (reposition) {
             o.transform.position = mainCamera.transform.position + mainCamera.transform.forward * currentDistance;
-            o.transform.rotation = Quaternion.identity;
+            o.transform.Rotate(0, rotateAroundY, 0, Space.Self);
         }
     }
 
@@ -102,6 +118,8 @@ public class ARTapToPickUp : MonoBehaviour {
                     carriedObject.setSelected();
                     carriedObject.ActivateSnapTriggers();
                     carriedObject.UseGravity(false);
+                    carriedObject.SetKinematic(true);
+                    carriedObject.transform.rotation = Quaternion.identity;
                 }
             } else {
                 HighlightedObject.Highlight(false);

@@ -48,6 +48,10 @@ public class Pickupable : MonoBehaviour {
         GetComponent<Rigidbody>().useGravity = useGravity;
     }
 
+    public void SetKinematic(bool isKinematic) {
+        GetComponent<Rigidbody>().isKinematic = isKinematic;
+    }
+
     public void Highlight(bool highlighted) {
 
         foreach (Renderer renderer in GetComponentsInChildren<Renderer>()) {
