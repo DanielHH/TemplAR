@@ -85,8 +85,6 @@ public class ARTapToPickUp : MonoBehaviour {
             if (currentDistance < minDistance) {
                 currentDistance = minDistance;
             }
-
-            debug.SetText("startTouchY " + startTouchY + " currentTouchY" + currentTouch.position.y);
         }
 
         if (reposition) {

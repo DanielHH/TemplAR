@@ -239,6 +239,7 @@ MonoBehaviour:
   highlightColor:
     serializedVersion: 2
     rgba: 4282384181
+  isSymmetric: 1
 --- !u!1 &4171091452168865441
 GameObject:
   m_ObjectHideFlags: 0

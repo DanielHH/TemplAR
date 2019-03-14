@@ -1997,7 +1997,7 @@ PrefabInstance:
       objectReference: {fileID: 7494713257747242936}
     - target: {fileID: 782863174, guid: a9a8e8165a7e80143b60d9fb5eaa929e, type: 3}
       propertyPath: proximityDistance
-      value: 80
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2305082937735706510, guid: a9a8e8165a7e80143b60d9fb5eaa929e,
         type: 3}
