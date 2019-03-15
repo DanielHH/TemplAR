@@ -4,6 +4,7 @@ An updated version of the map (level1-v2) can be found in the branch 'demo-map-f
 1. Unity
 2. AR Foundation 1.0.0 PREVIEW
 3. Post Processing 2.1.4
+
 Make sure to install the AR foundation and Post Processing package before
 attempting to build!
 
