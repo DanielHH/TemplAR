@@ -1,5 +1,10 @@
 An updated version of the map (level1-v2) can be found in the branch 'demo-map-fix'.
 
+# Prerequisites
+1. Unity
+2. AR Foundation 1.0.0 PREVIEW
+3. Post Processing 2.1.4
+
 # How to build this game in Android
 1. Clone this repo.
 2. Open up the project (TDDD57-Labs) in Unity.
